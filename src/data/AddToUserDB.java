@@ -21,8 +21,9 @@ public class AddToUserDB {
         String addUserString = getAddUserString(userDetails);
         String checkUserString = getCheckUserString(userDetails[10], userDetails[0]);
 
-        System.out.println(checkUserString); // TODO - This should only show if the program is in debug -- add program states
 
+        System.out.println(checkUserString); // TODO - This should only show if the program is in debug -- add program states
+        System.out.println(addUserString);
         // Get the connection to MySql and make statements and result set ready
         DbConnection dbConnection = new DbConnection();
         Connection connection = dbConnection.getConnection();
@@ -35,20 +36,17 @@ public class AddToUserDB {
 
         // 4 - Check if unique fields already exist
         if (!resultSet.isBeforeFirst()) { // TODO - change this to true if its not working
+            System.out.println("No user with this details");
+            resultSet = null;
             statement.clearBatch();
             statement.executeUpdate(addUserString);
         } else {
+        while (resultSet.next())
+            System.out.println(resultSet.getString("user_login") + " " + resultSet.getString("email"));
             System.out.println("The user is already registered with the email or userID");
         }
                 // Print out user details that came back from MySQL //
-        while (resultSet.next())
-            System.out.println(resultSet.getString("user_login") + " " + resultSet.getString("email"));
-
         System.out.println("Connection Closed");
-
-        // Check if exists already
-        // If exists already tell the user
-            // Register user if does not exist
         return resultSet;
     }
 
@@ -72,13 +70,14 @@ public class AddToUserDB {
                 "address_country, user_login, user_password) " +
                 "VALUES (");
             // For loop to add values to the
-        for (int i = 0; i < userDetails.length -1; i++)
+        for (int i = 0; i < userDetails.length; i++)
         {
-            string.append("'" + userDetails[i] + "', ");
-            if (userDetails.length -1 == i) {
-                string.append(");");
+            string.append("'" + userDetails[i]);
+            if ((i < userDetails.length -1)) {
+                string.append("', ");
             }
         }
+        string.append("');");
         return string.toString();
     }
 
