@@ -1,0 +1,94 @@
+.root {
+    /*-fx-background-color: #1d2021;*/
+    -fx-background-color:rgba(38,38,38,0.7);
+
+    -fx-background-radius: 50 50 180 50;
+}
+
+.text-field {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-border-color: wheat;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-effect: dropshadow(two-pass-box, burlywood, 2, 0.5, 1, 1);
+}
+
+
+#sighInWithGoogle_Button {
+    -fx-background-image: url("Assets/Google_Default.png");
+}
+
+#signInWithFacebook_Button {
+    -fx-background-image: url("Assets/Facebook_Default.png");
+}
+
+#signInWithTwitter_Button {
+    -fx-background-image: url("Assets/Twitter_Default.png");
+}
+
+.socialLogin {
+    -fx-background-radius: 5em;
+    -fx-opacity: 0.7;
+    -fx-min-width: 45;
+    -fx-min-height: 45;
+    -fx-border-width: 0;
+    -fx-background-repeat: stretch;
+    -fx-background-size: 45 45;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+.button:hover {
+    -fx-opacity: 1.0;
+}
+
+.button:pressed {
+    position:relative;
+    bottom:10px;
+    /*-fx-padding: 5 3 3 8;*/
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+    -fx-effect: dropshadow( three-pass-box , darkslategray , 10,0,1,2 );
+}
+
+.label2 {
+    -fx-font-size: 8pt;
+    -fx-text-fill: white;
+    -fx-opacity: 0.8;
+    -fx-font-style: italic;
+    -fx-wrap-text: true;
+}
+.button {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: white;
+    -fx-opacity: 0.8;
+    -fx-font-smoothing-type: gray;
+    -fx-text-fill: white;
+    -fx-border-radius: 2;
+    -fx-effect: dropshadow(one-pass-box,
+    rgba(255,255,255,0.2),
+    0, 0.4, 2,2);
+}
+#registryForm {
+    -fx-background-image: url("Assets/LoginSide.jpg");
+    -fx-background-repeat: stretch;
+    -fx-opacity: 0.5;
+    -fx-background-radius: 200 200 200 200;
+    -fx-shape:"M0 13 C0 5 5 0 13 0 L86 0 C94 0 99 5 99 13 L99 86 C99 94 94 99 86 99 L13 99 C5 99 0 94 0 86Z";
+}
+
+.label{
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(two-pass-box, burlywood, 10, 0.5, 1, 1);
+}
+.check-box{
+    -fx-text-fill: white;
+    -fx-wrap-text: true;
+    -fx-effect: dropshadow(two-pass-box, burlywood, 10, 0.5, 1, 1);
+}
+.check-box .box {
+    -fx-background-color: transparent;
+    -fx-border-color: wheat;
+}
+

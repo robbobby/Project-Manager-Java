@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<GridPane fx:controller="loginwindow.LoginWindow"
+          xmlns:fx="http://javafx.com/fxml"
+          vgap="20"
+          gridLinesVisible="false"
+            >
+    <stylesheets>
+        <URL value="@LoginWindow.css"/>
+    </stylesheets>
+    <columnConstraints>
+        <ColumnConstraints maxWidth="280"/>
+        <ColumnConstraints />
+    </columnConstraints>
+
+    <!-- //## LEFT SIDE OF WINDOW HERE ##// -->
+        <VBox spacing="15" GridPane.columnIndex="0">
+    <padding>
+        <Insets top="25" right="25" left="25" bottom="25"/>
+    </padding>
+
+        <!-- // Login  here // -->
+            <VBox alignment="TOP_CENTER" >
+                <Label text="Login"
+                           style="-fx-font-size: 15pt"/>
+            </VBox>
+
+                <!--// Username // -->
+            <HBox spacing="20" alignment="TOP_CENTER">
+                <padding>
+                    <Insets right="32"/>
+                </padding>
+            <ImageView >
+                <Image url="@Assets/Username.png"/>
+            </ImageView>
+                <TextField fx:id="loginUserName_TextField"/>
+            </HBox>
+
+                <!--  // Password // -->
+            <HBox spacing="20" alignment="TOP_CENTER">
+                <padding>
+                    <Insets right="32"/>
+                </padding>
+            <ImageView GridPane.rowIndex="2" GridPane.columnIndex="0">
+                    <Image url="@Assets/Password.png"/>
+            </ImageView>
+            <PasswordField fx:id="loginPassword_TextField"/>
+            </HBox>
+
+            <!-- // Optional sign in settings here //  -->
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="20"/>
+                </padding>
+
+                <HBox spacing="30" minHeight="50">
+                    <padding>
+                        <Insets right="20" left="50"/>
+                    </padding>
+                <CheckBox fx:id="staySignedIn_CheckBox" text="Stay Signed In" wrapText="true" />
+                    <padding>
+                        <Insets right="0" left="20"/>
+                    </padding>
+
+                <CheckBox fx:id="rememberUserName_CheckBox" text="Remember Username" wrapText="true">
+                </CheckBox>
+                </HBox>
+
+                <HBox alignment="TOP_CENTER">
+                    <Label text="Forgot Password?"
+                           />
+                </HBox>
+            </VBox>
+
+            <!-- // Sign in, Register and Exit Buttons here // -->
+            <VBox spacing="20">
+
+                <HBox alignment="TOP_CENTER" spacing="40">
+                    <Button text="Register" prefWidth="70"
+                            onAction="#Register_Button_Clicked"/>
+
+                    <Button text="Sign In" prefWidth="70"
+                            onMouseClicked="#SignIn_Button_Clicked"/>
+                </HBox>
+                <HBox alignment="TOP_CENTER">
+                <Button text="Exit" prefWidth="70"
+                        onAction="#Exit_Button_Clicked"/>
+                </HBox>
+                <HBox alignment="TOP_CENTER">
+                    <Label text="Login with:"/>
+                </HBox>
+            </VBox>
+
+            <!-- // Login with social media here -->
+            <HBox spacing="50" alignment="TOP_CENTER">
+                <Button fx:id="signInWithFacebook_Button"
+                        styleClass="socialLogin"/>
+                <Button fx:id="sighInWithGoogle_Button"
+                        styleClass="socialLogin"/>
+                <Button fx:id="signInWithTwitter_Button"
+                        styleClass="socialLogin"/>
+            </HBox>
+        </VBox>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- // Enter in the right column here // -->
+
+    <GridPane fx:id="registryForm" GridPane.columnIndex="1" minWidth="300">
+        <GridPane fx:id="registryForm_Page1" visible="false">
+            <columnConstraints>
+                <ColumnConstraints minWidth="300"/>
+            </columnConstraints>
+
+            <HBox alignment="TOP_CENTER">
+                <Label text="Register" style="-fx-font-size: 15pt"/>
+            </HBox>
+            <GridPane GridPane.rowIndex="1">
+                <padding>
+                    <Insets left="10"/>
+                </padding>
+                <columnConstraints>
+                    <ColumnConstraints minWidth="140"/>
+                    <ColumnConstraints minWidth="140"/>
+                </columnConstraints>
+
+
+                <!-- // REGISTER COLUMN 1 // -->
+                <HBox alignment="TOP_CENTER">
+                    <GridPane>
+                        <Label text="First Name:"
+                               alignment="TOP_CENTER" minWidth="150">
+                            <padding>
+                                <Insets bottom="5"/>
+                            </padding>
+                        </Label>
+                        <ImageView fx:id="lastName_Warning" fitWidth="15" fitHeight="15" visible="false">
+                            <Image url="@Assets/Warning.png"/>
+                        </ImageView>
+                        <TextField fx:id="firstName_TextField"
+                                   GridPane.rowIndex="1"/>
+                    </GridPane>
+                </HBox>
+
+                <!-- // REGISTER COLUMN 2 // -->
+                <HBox GridPane.columnIndex="1" alignment="TOP_CENTER">
+                    <GridPane>
+                        <ImageView fx:id="firstName_Warning" fitWidth="15" fitHeight="15" visible="false">
+                            <Image url="@Assets/Warning.png"/>
+                        </ImageView>
+                        <Label text="Last Name:"
+                               minWidth="150" alignment="TOP_CENTER">
+                            <padding>
+                                <Insets bottom="5"/>
+                            </padding>
+                        </Label>
+
+                        <TextField fx:id="lastName_TextField"
+                                   GridPane.rowIndex="1"/>
+
+                    </GridPane>
+                </HBox>
+                <HBox alignment="TOP_CENTER" GridPane.rowIndex="3" GridPane.columnSpan="2" >
+                    <VBox alignment="TOP_CENTER">
+                        <HBox alignment="TOP_CENTER">
+                            <ImageView fx:id="email_Warning" fitWidth="15" fitHeight="15" visible="false">
+                                <Image url="@Assets/Warning.png"/>
+                            </ImageView>
+                            <Label text="E-mail Address*:">
+                                <padding>
+                                    <Insets left="10"/>
+                                </padding>
+                            </Label>
+                        </HBox>
+                        <TextField fx:id="emailAddress_TextField" minWidth="250" />
+
+                        <HBox>
+                            <Label text="Country Code:">
+                                <padding>
+                                    <Insets right="40"/>
+                                </padding>
+                            </Label>
+
+                            <Label text="Mobile Number:" />
+                        </HBox>
+
+                        <HBox>
+                            <Label text=" + ">
+                                <padding>
+                                    <Insets top="10" left="50"/>
+                                </padding>
+                            </Label>
+
+                            <TextField fx:id="mobileNumberCountryCode_TextField"
+                                       maxWidth="50">
+                                <padding>
+                                    <Insets right="150"/>
+                                </padding>
+                            </TextField>
+
+                            <TextField fx:id="mobileNumber_TextField"
+                                       minWidth="100" />
+                        </HBox>
+
+                        <Label text="Address">
+                        </Label>
+                        <GridPane>
+                            <Label text="Line 1" GridPane.columnIndex="0"/>
+
+                            <TextField fx:id="addressLine1_TextField"
+                                       GridPane.columnIndex="1"/>
+
+                            <Label text="Line 2" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+                            <TextField fx:id="addressLine2_TextField"
+                                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                            <Label text="City" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+
+                            <TextField fx:id="addressCity_TextField"
+                                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                            <Label text="Postcode:" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                                <padding>
+                                    <Insets left="10"/>
+                                </padding>
+                            </Label>
+
+                            <TextField fx:id="addressPostCode_TextField"
+                                       GridPane.rowIndex="2" GridPane.columnIndex="2" maxWidth="80"/>
+
+                            <Label text="Country" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                            <TextField fx:id="addressCountry_TextField"
+                                       GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                            <HBox minWidth="300" GridPane.columnSpan="3" GridPane.rowIndex="5" alignment="TOP_RIGHT">
+                                <padding>
+                                    <Insets right="50"/>
+                                </padding>
+
+                                <Button text="Next" alignment="TOP_CENTER"
+                                        onAction="#RegisterNext_Button_Clicked"/>
+                            </HBox>
+                        </GridPane>
+                    </VBox>
+                </HBox>
+            </GridPane>
+        </GridPane>
+        <GridPane fx:id="registryForm_Page2" visible="false">
+            <padding>
+                <Insets left="10"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints minWidth="60"/>
+                <ColumnConstraints minWidth="140"/>
+                <ColumnConstraints minWidth="50"/>
+            </columnConstraints>
+            <HBox alignment="TOP_CENTER" GridPane.columnIndex="1">
+                <VBox>
+                    <HBox alignment="TOP_CENTER">
+                        <Label text="Register" style="-fx-font-size: 15pt"/>
+
+                        <!-- UserID Field -->
+                    </HBox>
+                    <HBox alignment="TOP_CENTER">
+                        <Label text="UserID*:"/>
+                    </HBox>
+
+                    <TextField fx:id="userID_TextField"
+                               alignment="TOP_CENTER"
+                               maxWidth="200"
+                               onKeyTyped="#UserID_TextField_TypedIn"/>
+
+                    <!-- ######### Warning for the UserID ######### -->
+                    <HBox fx:id="userIDWarning_HBox" visible="false">
+                        <ImageView fitHeight="20" fitWidth="20">
+                            <Image url="@Assets/Warning.png"/>
+                        </ImageView>
+
+                        <Label fx:id="userIDWarning_Label"
+                               styleClass="label2"
+                               text="this is a text"
+                               wrapText="true">
+                            <padding>
+                                <Insets left="10" top="2"/>
+                            </padding>
+                        </Label>
+                    </HBox>
+
+                    <!-- Password field -->
+
+                    <HBox alignment="TOP_CENTER">
+                        <Label text="Password*:"/>
+                    </HBox>
+
+                    <PasswordField fx:id="passwordRegister_PasswordField"
+                                   alignment="TOP_CENTER"
+                                   maxWidth="200"
+                                   onKeyTyped="#Password_TextField_TypedIn" />
+
+                    <!-- ######### Warning for the Password ######### -->
+                    <HBox fx:id="passwordWarning_HBox" visible="false">
+                        <!-- Warning for the password-->
+                        <ImageView fitHeight="20" fitWidth="20">
+                            <Image url="@Assets/Warning.png"/>
+                        </ImageView>
+
+                        <Label fx:id="passwordWarning_Label"
+                               styleClass="label2"
+                               text="this is a text"
+                        >
+                            <padding>
+                                <Insets left="10" top="2"/>
+                            </padding>
+                        </Label>
+                    </HBox>
+
+                    <!-- Re-enter Password field -->
+
+                    <HBox  alignment="TOP_CENTER">
+                        <Label text="Re-enter Password*:"
+                        />
+                    </HBox>
+
+                    <PasswordField fx:id="passwordRegister1_PasswordField"
+                                   alignment="TOP_CENTER"
+                                   maxWidth="200"
+                                   minWidth="200"
+                                   onKeyTyped="#Password2_TextField_Changed"/>
+
+
+                    <!-- ######### Warning for the Password MATCH ######### -->
+                    <HBox fx:id="passwordMatchWarning_HBox" visible="false">
+                        <ImageView fitHeight="20" fitWidth="20">
+                            <Image url="@Assets/Warning.png"/>
+                        </ImageView>
+
+                        <Label fx:id="passwordMatchWarning_Label"
+                               styleClass="label2">
+                            <padding>
+                                <Insets left="10" top="2"/>
+                            </padding>
+                        </Label>
+
+                    </HBox>
+
+
+                    <HBox alignment="TOP_CENTER">
+                        <padding>
+                            <Insets top="20" bottom="20"/>
+                        </padding>
+
+                        <Button text="Previous page"
+                                onAction="#RegisterBack_button_Clicked"/>
+
+                    </HBox>
+                    <HBox alignment="TOP_CENTER">
+
+                        <Button text="Complete Registration"
+                                onAction="#CompleteRegistration_Clicked"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+
+        </GridPane>
+        <GridPane fx:id="registerComplete" visible="false">
+            <VBox>
+                <HBox alignment="TOP_CENTER">
+                    <Label text="Registration Complete" style="-fx-font-size: 15pt"/>
+                </HBox>
+                <Label text="Please check e-mail to confirm your account"/>
+            </VBox>
+        </GridPane>
+    </GridPane>
+</GridPane>
