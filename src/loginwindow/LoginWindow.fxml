@@ -52,7 +52,8 @@
             <ImageView GridPane.rowIndex="2" GridPane.columnIndex="0">
                     <Image url="@Assets/Password.png"/>
             </ImageView>
-            <PasswordField fx:id="loginPassword_TextField"/>
+            <PasswordField fx:id="loginPassword_TextField"
+                            onKeyTyped="#passwordReturn"/>
             </HBox>
 
             <!-- // Optional sign in settings here //  -->
@@ -403,7 +404,7 @@
             </HBox>
 
         </GridPane>
-        <GridPane fx:id="registerComplete" visible="true">
+        <GridPane fx:id="registerComplete" visible="false">
             <HBox alignment="TOP_CENTER" minWidth="300">
                 <VBox alignment="CENTER_LEFT" minHeight="450">
                     <HBox alignment="BOTTOM_CENTER">

@@ -39,4 +39,5 @@ public class DbConnection {
         initConnection();
         return connection;
     }
-};
+
+}

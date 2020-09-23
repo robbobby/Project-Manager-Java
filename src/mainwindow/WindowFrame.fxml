@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import java.lang.*?>
+
+
+<BorderPane fx:id="mainPane"
+            stylesheets="@WindowFrame.css"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/"
+            fx:controller="mainwindow.WindowFrame">
+    <top>
+        <GridPane>
+            <HBox>
+                <MenuBar>
+                    <Menu text="File"/>
+                    <Menu text="Edit"/>
+                    <Menu text="View"/>
+                    <Menu text="Tools"/>
+                    <Menu text="Help"/>
+
+                </MenuBar>
+                <GridPane>
+                    <HBox spacing="10">
+                        <GridPane.margin>
+                            <Insets top="5"/>
+                        </GridPane.margin>
+                        <ComboBox fx:id="companySelection_ComboBox">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="New Project4"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <ComboBox fx:id="projectSelection_ComboBox">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="New Project4"/>
+                                </FXCollections>
+                            </items>
+                            <GridPane.margin>
+                                <Insets top="5"/>
+                            </GridPane.margin>
+                        </ComboBox>
+                    </HBox>
+                </GridPane>
+            </HBox>
+        </GridPane>
+    </top>
+    <left>
+        <VBox fx:id="menuContainer_VBox">
+            <HBox>
+                <padding>
+                    <Insets bottom="10" left="10" top="10" />
+                </padding>
+                <ToggleButton fx:id="menuToggle_Button" minHeight="35" minWidth="35" onMouseClicked="#menuToggle_Clicked" />
+
+            </HBox>
+            <ListView fx:id="menu_ListView" maxWidth="150">
+                <GridPane.margin>
+                    <Insets left="10" top="10" />
+
+                </GridPane.margin>
+                <HBox fx:id="home_ListViewItem" onMouseClicked="#onMenuItems_Selected" spacing="10">
+                    <ImageView>
+                        <Image requestedHeight="35" requestedWidth="35" url="@Assets/Home_Default.png" />
+                    </ImageView>
+                    <Label fx:id="home_Label" text="Home" />
+                </HBox>
+                <HBox fx:id="calendar_ListViewItem" onMouseClicked="#onMenuItems_Selected" spacing="10">
+                    <ImageView>
+                        <Image requestedHeight="35" requestedWidth="35" url="@Assets/Calendar_Default.png" />
+                    </ImageView>
+                    <Label fx:id="calendar_Label" text="Calendar" />
+                </HBox>
+                <HBox fx:id="message_ListViewItem" onMouseClicked="#onMenuItems_Selected" spacing="10">
+                    <ImageView>
+                        <Image requestedHeight="35" requestedWidth="35" url="@Assets/Message_Default.png" />
+                    </ImageView>
+                    <Label fx:id="message_Label" text="Messages" />
+                </HBox>
+            </ListView>
+            <Region VBox.vgrow="SOMETIMES" />
+            <VBox fx:id="BottomLeftMenuContainer"
+                  alignment="BOTTOM_LEFT">
+                <HBox>
+                    <Button fx:id="settings_Button" style="-fx-background-color: transparent"
+                            onMouseClicked="#settings_Button_Clicked">
+                        <graphic>
+                            <ImageView>
+                                <Image requestedHeight="35" requestedWidth="35" url="@Assets/Settings_Default.png" />
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Label fx:id="settings_Label" text="Settings" style="-fx-padding: 13 0 0 0;"/>
+                </HBox>
+                <HBox>
+                    <Button fx:id="logOut_Button" style="-fx-background-color: transparent"
+                            onMouseClicked="#logOut_Button_Clicked">
+                        <graphic>
+                            <ImageView>
+                                <Image requestedHeight="35" requestedWidth="35" url="@Assets/Logout_Default.png" />
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Label fx:id="logOut_Label" text="Log Out"
+                           style="-fx-padding: 13 0 0 0;"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </left>
+    <center>
+
+    </center>
+</BorderPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="homewindow.HomeWindow">
+    <GridPane>
+        <VBox spacing="20">
+            <GridPane.margin>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </GridPane.margin>
+            <HBox spacing="10">
+                <ImageView>
+                    <Image requestedHeight="25" requestedWidth="25" url="@Assets/BPM_Icon.png" />
+                </ImageView>
+                <Button text="Add new Team Profile"
+                        onMouseClicked="#addNewProfile"
+                />
+                <ComboBox fx:id="projectSelect_ComboBox" minWidth="150">
+                </ComboBox>
+            </HBox>
+            <Line endX="10000.0" startX="-10000.0" />
+            <HBox spacing="10">
+                <ImageView>
+                    <Image requestedHeight="25" requestedWidth="25" url="@Assets/Project_Default.png" />
+                </ImageView>
+                <Button text="Add new Project" />
+            </HBox>
+        </VBox>
+        <columnConstraints>
+            <ColumnConstraints />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+
+    </GridPane>
+</AnchorPane>

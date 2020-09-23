@@ -1,22 +1,25 @@
 package loginwindow;
 
-import data.AddToUserDB;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
+import data.User;
+import data.UserLogin;
+import data.UserProfile;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.net.URL;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -65,9 +68,36 @@ public class LoginWindow {
     public static Stage thisWindow = null;
     public HBox finalWarning;
 
+    // ##### Get reference of this window ##### //
+    public static Stage getWindow() { return thisWindow; }
 
-    public void SignIn_Button_Clicked() {
+        // ##### Creation of User Profile ##### //
+            UserProfile userProfile = UserProfile.getUserProfile();
+
+    public void SignIn_Button_Clicked() throws IOException, SQLException {
+
         thisWindow = (Stage) loginForm.getScene().getWindow();
+
+        System.out.println("Signing in...");
+
+
+        // ################## REMOVE if "!" (!loginResult.isBeforeFirst()) TO ALLOW LOGIN ################## //
+        // ################## REMOVE if "!" (!loginResult.isBeforeFirst()) TO ALLOW LOGIN ################## //
+        // ################## REMOVE if "!" (!loginResult.isBeforeFirst()) TO ALLOW LOGIN ################## //
+        // ################## REMOVE if "!" (!loginResult.isBeforeFirst()) TO ALLOW LOGIN ################## //
+        // ################## REMOVE if "!" (!loginResult.isBeforeFirst()) TO ALLOW LOGIN ################## //
+        boolean loginResult = UserLogin.login("Robert", "Default1");
+//        ResultSet loginResult = UserLogin.login(loginUserName_TextField.getText(), loginPassword_TextField.getText());
+        System.out.println(loginResult);
+        if (loginResult) {
+            System.out.println("Settings UserProfile Details");
+
+            System.out.println("Found user login details");
+            LaunchApplication();
+            thisWindow.hide();
+        }
+        else
+            System.out.println("No user found");
     }
 
     // ##### Register Buttons #####//
@@ -105,24 +135,24 @@ public class LoginWindow {
     public void CompleteRegistration_Clicked() throws SQLException {
 
         // ##### Make array from the TextFields ##### //
-        String[] userDetails = {emailAddress_TextField.getText(),
-                firstName_TextField.getText(),
-                lastName_TextField.getText(),
-                mobileNumber_TextField.getText(),
-                mobileNumberCountryCode_TextField.getText(),
-                addressLine1_TextField.getText(),
-                addressLine2_TextField.getText(),
-                addressCity_TextField.getText(),
-                addressPostCode_TextField.getText(),
-                addressCountry_TextField.getText(),
-                userID_TextField.getText(),
-                passwordRegister_PasswordField.getText(),
+        String[] userDetails = { emailAddress_TextField.getText(),
+                 firstName_TextField.getText(),
+                 lastName_TextField.getText(),
+                 mobileNumber_TextField.getText(),
+                 mobileNumberCountryCode_TextField.getText(),
+                 addressLine1_TextField.getText(),
+                 addressLine2_TextField.getText(),
+                 addressCity_TextField.getText(),
+                 addressPostCode_TextField.getText(),
+                 addressCountry_TextField.getText(),
+                 userID_TextField.getText(),
+                 passwordRegister_PasswordField.getText(),
         };
         ResultSet resultSet = null;
         if (CheckUserID(userID_TextField.getText()) && CheckPassword(passwordRegister_PasswordField.getText()) && CheckPasswordMatch()) {
             System.out.println(Arrays.toString(userDetails));
             System.out.println(userDetails.length);
-            resultSet = AddToUserDB.addUser(userDetails);
+            resultSet = User.addUser(userDetails);
             finalWarning.setVisible(false);
             registryForm_Page2.setVisible(false);
             registerComplete.setVisible(true);
@@ -238,6 +268,24 @@ public class LoginWindow {
                 !pass.equals(pass.toLowerCase()) &&
                 !pass.equals(pass.toUpperCase()) &&
                 pass.length() > 5;
+    }
+
+    public void LaunchApplication() throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../mainwindow/WindowFrame.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            Stage appMainWindow = new Stage();
+            appMainWindow.setTitle("Project Manager");
+            appMainWindow.setScene(new Scene(root1));
+            appMainWindow.setMaximized(true);
+            appMainWindow.show();
+            appMainWindow.getIcons().add((new Image("mainwindow/Assets/BPM_Icon.png")));
+    }
+
+    public void passwordReturn(KeyEvent keyEvent) throws IOException, SQLException {
+        if ((keyEvent.getCode() == KeyCode.ENTER)) { // WHY THE FUCK DOES THIS NOT WORK??
+            SignIn_Button_Clicked();    /* TODO Figure out wtf is wrong with this, it makes 0 sense*/
+        }
     }
 }
 

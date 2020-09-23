@@ -1,0 +1,133 @@
+.root {
+    -fx-background-color: #1d2021;
+    font-size: 20pt;
+    -fx-text-fill: white;
+}
+.combo-box {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-border-color: wheat;
+}
+.combo-box-popup .list-view .list-cell
+{
+    -fx-padding: 4 0 4 5;
+    -fx-text-fill: white;
+}
+.combo-box:selected {
+    -fx-background-color: transparent;
+}
+.menu-bar {
+    -fx-background-color: #1e1e1e;
+}
+.menu {
+    -fx-border-width: 0 1 1 1;
+    -fx-border-color: #2c2c2c;
+}
+
+.label {
+    font-size: 30px;
+    -fx-text-fill: white;
+    -fx-padding: 10 0 0 0;
+}
+.menu-button {
+    -fx-background-color: transparent;
+}
+
+
+#menuToggle_Button{
+    background-color: transparent;
+    -fx-background-image: url("Assets/Menu_Default.png");
+    -fx-background-size: 35 35;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+    -fx-start-margin: 5;
+}
+
+.list-cell {
+    -fx-background-color: #1e1e1e;
+}
+.list-view {
+    -fx-background-color: #1e1e1e;
+}
+.list-view .scroll-bar:horizontal .increment-arrow,
+.list-view .scroll-bar:horizontal .decrement-arrow,
+.list-view .scroll-bar:horizontal .increment-button,
+.list-view .scroll-bar:horizontal .decrement-button {
+    -fx-padding:0;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: rgba(255,255,255, .1);
+    -fx-opacity: 0.8;
+    -fx-text-fill: white;
+    -fx-border-width: 1;
+    -fx-border-color: #1e0014;
+}
+
+
+.list-cell:filled:hover {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: white;
+    -fx-opacity: 0.8;
+}
+
+#menuToggle_Button:hover {
+    -fx-effect: dropshadow(one-pass-box, #e7e7e7, 15, 0, 0, 0);
+}
+
+
+#menuToggle_Button:selected{
+    -fx-effect: dropshadow(one-pass-box, #e7e7e7, 30, 0, 0, 0);
+}
+#menuToggle_Button:selected:focused{
+    -fx-effect: dropshadow(two-pass-box, #e7e7e7, 15, 0, 0, 0);
+}
+
+#menuToggle_Button {
+    -fx-background-color:transparent;
+    -fx-background-repeat: no-repeat;
+
+}
+
+#MenuContainer_VBox{
+    -fx-background-color: #1e1e1e ;
+}
+#SettingsMenuContainer_VBox {
+    -fx-background-color: #1e1e1e;
+}
+
+
+/* ######################## Standard Button ########################*/
+.button {
+    -fx-text-fill: wheat;
+    text-emphasis: wheat;
+    -fx-padding: 3 5 5 5;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 1;
+    -fx-background-color: transparent;
+    /*-fx-effect: dropshadow( gaussian , wheat , 1,0,0,1 );*/
+}
+.button:hover {
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( gaussian , wheat , 1,0,0,1 );
+}
+.button:pressed {
+    -fx-padding: 5 3 3 8;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+    -fx-effect: dropshadow( gaussian , wheat , 6,0,0,1 );
+}
+.button Text {
+    -fx-fill: white;
+    -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
+}
+
+.text-field {
+    -fx-text-fill: white;
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: wheat;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+

@@ -2,12 +2,14 @@ package data;
 
 import dbconnection.DbConnection;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class AddToUserDB {
+public class User {
+
 
     public static ResultSet addUser(String[] userDetails) throws SQLException {
         // 1 - Create the string for the Statement... In its own function to de-clutter the process
@@ -41,18 +43,19 @@ public class AddToUserDB {
             statement.clearBatch();
             statement.executeUpdate(addUserString);
         } else {
-        while (resultSet.next())
-            System.out.println(resultSet.getString("user_login") + " " + resultSet.getString("email"));
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("user_login") + " " + resultSet.getString("email"));
+            }
             System.out.println("The user is already registered with the email or userID");
         }
-                // Print out user details that came back from MySQL //
+        // Print out user details that came back from MySQL //
+        connection.close();
         System.out.println("Connection Closed");
         return resultSet;
     }
 
 
-
-    // ##### Background work of the class ##### //
+    // LOGGING IN - Makes statement for checking the user login details
 
     private static String getCheckUserString(String userLogin, String emailAddress) {
         String statementQuery = "SELECT email, user_login " +
@@ -62,24 +65,20 @@ public class AddToUserDB {
     }
 
 
-    // #### Create the string for the Statement... In its own function to de-clutter the process #### //
-    private static String getAddUserString (String[] userDetails)
-    {
+    //##### ADDING USER TO USER DATABASE - Make the string ##### //
+    private static String getAddUserString(String[] userDetails) {
         StringBuilder string = new StringBuilder("INSERT INTO users (email, first_name, last_name, mobile_number, " +
                 "mobile_number_country_code, address_l1 ,address_l2, address_city, address_postcode, " +
                 "address_country, user_login, user_password) " +
                 "VALUES (");
-            // For loop to add values to the
-        for (int i = 0; i < userDetails.length; i++)
-        {
+        // For loop to add values to the
+        for (int i = 0; i < userDetails.length; i++) {
             string.append("'" + userDetails[i]);
-            if ((i < userDetails.length -1)) {
+            if ((i < userDetails.length - 1)) {
                 string.append("', ");
             }
         }
         string.append("');");
         return string.toString();
     }
-
-
 }
