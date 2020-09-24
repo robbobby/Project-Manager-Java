@@ -1,5 +1,6 @@
-package data;
+package dbconnection;
 
+import data.UserProfile;
 import dbconnection.DbConnection;
 
 import java.sql.Connection;

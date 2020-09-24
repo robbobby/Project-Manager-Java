@@ -1,6 +1,7 @@
 package data;
 
 import dbconnection.DbConnection;
+import dbconnection.TeamDbConnection;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -8,8 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class User {
+        // This class will contain all use profile related functions //
 
+public class User {
 
     public static ResultSet addUser(String[] userDetails) throws SQLException {
         // 1 - Create the string for the Statement... In its own function to de-clutter the process
@@ -81,4 +83,45 @@ public class User {
         string.append("');");
         return string.toString();
     }
+
+    /**
+     * Add user to team_members database
+     */
+    public static void addUserToTeam(String projectName, int uniqueID, int adminLevel) throws SQLException {
+
+        // Connect to the new project database that we made //
+        Connection connectionToTeamDB = TeamDbConnection.getTableCreationConnection("root", "default", projectName);
+        Connection connectionToMainDB = new DbConnection().getConnection();
+        ResultSet resultSet = null;
+        String getUser = "SELECT user_id, first_name, last_name, email, mobile_number\n" +
+                "FROM users\n" +
+                "\n" +
+                "WHERE user_id = " +uniqueID + ";";
+
+        System.out.println(getUser);
+
+        Statement statement = connectionToMainDB.createStatement();
+        resultSet = statement.executeQuery(getUser);
+
+        StringBuilder setUser = new StringBuilder( "INSERT INTO team_members" +
+                " (admin_access_level, user_unique_id, first_name, last_name, email_address, mobile_number, date_added) " +
+                " VALUES ('" + adminLevel);
+        while (resultSet.next()) {
+            for (int i = 1; i < 6; i++) {
+                setUser.append("', '" + resultSet.getString(i));
+                if (i == 5)
+                    setUser.append("', NOW());");
+            }
+        }
+
+        System.out.println(setUser);
+
+
+        statement = connectionToTeamDB.createStatement();
+        statement.executeUpdate(String.valueOf(setUser));
+
+
+
+    }
+
 }

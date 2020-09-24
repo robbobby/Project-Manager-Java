@@ -1,5 +1,6 @@
 package utilitywindows;
 
+import data.User;
 import data.UserProfile;
 import dbconnection.TeamDbConnection;
 import javafx.event.ActionEvent;
@@ -14,13 +15,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.TextBoundsType;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import data.AddCompanyProfile;
+import data.AddTeamProfile;
 
 import java.sql.SQLException;
 
@@ -96,13 +93,15 @@ public class AddNewTeamWindow {
                 try {
                     System.out.println(userProfile.get_UserUniqueId());
                     System.out.println(userProfile.getEmail());
-                    if (AddCompanyProfile.addProject(profileName_TextField.getText(), userProfile.get_UserUniqueId(), window))
+                    if (AddTeamProfile.addProject(profileName_TextField.getText(), userProfile.get_UserUniqueId(), window))
                         warning.setVisible(true);
                     else {
                         warning.setVisible(false);
                     window.close();
                         TeamDbConnection.makeDatabase(profileName_TextField.getText());
                         NotificationPopUp.display("Project Created Successfully");
+                        User.addUserToTeam(profileName_TextField.getText(), userProfile.get_UserUniqueId(), 1);
+
                     }
                 } catch (SQLException exception) {
                     exception.printStackTrace();

@@ -1,7 +1,6 @@
 package dbconnection;
 
 import java.sql.*;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,6 +66,8 @@ public class TeamDbConnection {
 //        }
 //    }
 
+
+            // After a database is made for a team we call this function to create the tables in that database //
     private static void createDbTables(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -77,7 +78,7 @@ public class TeamDbConnection {
                 "\t`last_name` VARCHAR(25),\n" +
                 "\t`email_address` VARCHAR(40) UNIQUE, \n" +
                 "\t`mobile_number` VARCHAR(15),\n" +
-                "\t`data_added` DATETIME);\n";
+                "\t`date_added` DATETIME);\n";
 
         String createProjectTable = "CREATE TABLE projects (\n" +
                 "\t`project_id` INT UNIQUE NOT NULL PRIMARY KEY AUTO_INCREMENT,\n" +
@@ -115,7 +116,7 @@ public class TeamDbConnection {
 
                             // Connection to make the Database //
 
-    private static Connection getConnection(String userID, String password) {
+    public static Connection getConnection(String userID, String password) {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -130,7 +131,7 @@ public class TeamDbConnection {
 
                             // Connection to make tables after database is created //
 
-    private static Connection getTableCreationConnection(String userID, String password, String databaseName) {
+    public static Connection getTableCreationConnection(String userID, String password, String databaseName) {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");

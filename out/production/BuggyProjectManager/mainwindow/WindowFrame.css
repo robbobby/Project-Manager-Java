@@ -130,4 +130,11 @@
     -fx-border-insets: 5px;
     -fx-background-insets: 5px;
 }
-
+#refresh {
+    -fx-background-image: url("Assets/Refresh.png");
+    -fx-border-image-repeat: fill;
+    -fx-background-repeat: no-repeat no-repeat;
+    -fx-background-size: 25 25;
+    -fx-pref-height: 25;
+    -fx-pref-width: 25;
+}

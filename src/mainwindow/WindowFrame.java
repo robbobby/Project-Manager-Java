@@ -36,6 +36,7 @@ public class WindowFrame {
     public Label logOut_Label;
     public VBox BottomLeftMenuContainer;
     public BorderPane mainPane;
+    public Button refresh;
 
     HashMap<String, String> MENU_ITEMS = new HashMap<String, String>();
 

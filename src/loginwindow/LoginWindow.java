@@ -1,7 +1,7 @@
 package loginwindow;
 
 import data.User;
-import data.UserLogin;
+import dbconnection.UserLogin;
 import data.UserProfile;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

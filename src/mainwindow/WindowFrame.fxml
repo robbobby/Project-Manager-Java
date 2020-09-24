@@ -39,6 +39,7 @@
                         <ComboBox fx:id="projectSelection_ComboBox">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
+
                                     <String fx:value="New Project4"/>
                                 </FXCollections>
                             </items>
@@ -46,6 +47,7 @@
                                 <Insets top="5"/>
                             </GridPane.margin>
                         </ComboBox>
+                        <Button fx:id="refresh"/>
                     </HBox>
                 </GridPane>
             </HBox>

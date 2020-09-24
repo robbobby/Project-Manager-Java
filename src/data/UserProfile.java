@@ -3,7 +3,7 @@ package data;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/** Contains all details of company project and user details required in the program */
+/** Contains all data of company project and user details required in the program */
 public class UserProfile {
     private
     int userUniqueId;
@@ -50,7 +50,8 @@ public class UserProfile {
         return userProfile;
     }
     /** Updates Profile, call when each item of the profile is updated */
-    public void updateProfile() {
+    public void updateProfileMembers() {
+
     }
 
     public boolean getIsInit() { return isInit; }

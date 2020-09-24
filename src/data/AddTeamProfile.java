@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class AddCompanyProfile {
+public class AddTeamProfile {
 
     public static boolean addProject(String teamName, int adminUser, Stage parentWindow) throws SQLException {
 
