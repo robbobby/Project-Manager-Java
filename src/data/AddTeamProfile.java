@@ -17,10 +17,10 @@ public class AddTeamProfile {
         Statement addProjectStatement = connection.createStatement();
         ResultSet loginResult = null;
 
-        String checkIfProfileExists = "SELECT company_name from teams WHERE company_name='" + teamName + "'";
+        String checkIfProfileExists = "SELECT team_name from teams WHERE team_name='" + teamName + "'";
 
-        String createProfile = "INSERT INTO `teams` (`company_name`, `admin_user`, `Created_on`)\n" +
-                "VALUES('" + teamName + "', '" + adminUser + "', NOW());\n";
+        String createProfile = "INSERT INTO `teams` (`team_name`, `admin_user`, `Created_on`)\n" +
+                "VALUES('" + teamName.replace(" ", "_") + "', '" + adminUser + "', NOW());\n";
         System.out.println(createProfile);
 
         System.out.println(checkIfProfileExists);

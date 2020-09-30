@@ -107,4 +107,8 @@ public class WindowFrame {
             menuContainer_VBox.setMaxWidth(maxSize);
         settingsMenuContainer_VBox.prefWidth(maxSize);
     }
+
+    public void RefreshHomeWindow(MouseEvent mouseEvent) {
+
+    }
 }

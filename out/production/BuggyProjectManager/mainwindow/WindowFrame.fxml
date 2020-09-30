@@ -47,7 +47,8 @@
                                 <Insets top="5"/>
                             </GridPane.margin>
                         </ComboBox>
-                        <Button fx:id="refresh"/>
+                        <Button fx:id="refresh"
+                                onMouseClicked="#RefreshHomeWindow"/>
                     </HBox>
                 </GridPane>
             </HBox>

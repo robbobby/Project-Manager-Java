@@ -6,9 +6,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="calendarwindow.CalendarWindow"
             prefHeight="400.0" prefWidth="600.0">
+    <padding>
+        <Insets left="10"/>
+    </padding>
     <Label text="Calendar Window"/>
-</AnchorPane>
+    <left>
+        <VBox spacing="5" prefWidth="150">
+                <Label text="Selection Mode" alignment="CENTER" prefWidth="150"/>
+            <ComboBox prefWidth="150">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Single Day"/>
+                        <String fx:value="Week"/>
+                        <String fx:value="Month"/>
+                        <String fx:value="Custom Range"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Label text="View Mode" prefWidth="150" alignment="CENTER"/>
+            <ComboBox prefWidth="150">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="1 Month View"/>
+                        <String fx:value="Multi Calendar"/>
+                        <String fx:value="Year Week View"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+        </VBox>
+    </left>
+
+</BorderPane>

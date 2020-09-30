@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calendar.CalendarGUI">
+   <children>
+      <TableView layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="224.0">
+        <columns>
+          <TableColumn prefWidth="32.0" text="Mon" />
+          <TableColumn prefWidth="32.0" text="Tue" />
+          <TableColumn prefWidth="32.0" text="Wed" />
+          <TableColumn prefWidth="32.0" text="Thu" />
+          <TableColumn prefWidth="32.0" text="Fri" />
+          <TableColumn prefWidth="32.0" text="Sat" />
+          <TableColumn prefWidth="32.0" text="Sun" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -51,8 +51,11 @@ public class UserProfile {
     }
     /** Updates Profile, call when each item of the profile is updated */
     public void updateProfileMembers() {
-
-    }
+            }
 
     public boolean getIsInit() { return isInit; }
+
+    public void readProjectsFromDB() {
+
+    }
 }

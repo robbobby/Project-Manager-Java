@@ -85,12 +85,15 @@ public class User {
     }
 
     /**
-     * Add user to team_members database
+     * Add user to team_members database in TEAM TEAM TEAM TEAM database
+     * 1 - Get user from projectmanager database,
+     * 2 - Add user to team_members database
      */
     public static void addUserToTeam(String projectName, int uniqueID, int adminLevel) throws SQLException {
 
         // Connect to the new project database that we made //
-        Connection connectionToTeamDB = TeamDbConnection.getTableCreationConnection("root", "default", projectName);
+        String teamName = projectName.replace(" ", "_");
+        Connection connectionToTeamDB = TeamDbConnection.getTableCreationConnection("root", "default", teamName);
         Connection connectionToMainDB = new DbConnection().getConnection();
         ResultSet resultSet = null;
         String getUser = "SELECT user_id, first_name, last_name, email, mobile_number\n" +
@@ -119,9 +122,42 @@ public class User {
 
         statement = connectionToTeamDB.createStatement();
         statement.executeUpdate(String.valueOf(setUser));
+        addUserToMainDbTeam_members(projectName.replace(" ", "_"),uniqueID);
+    }
+
+    public static void getUserTeamList(int userID) throws SQLException {
+        Connection connection = new DbConnection().getConnection();
+        Statement statement = connection.createStatement();
+
+        String query = "SELECT ";
+        ResultSet resultSet = statement.executeQuery(query);
+    }
+
+    public static void addUserToMainDbTeam_members(String teamName, int userID) throws SQLException {
+
+        Connection connection = new DbConnection().getConnection();
+        UserProfile userProfile = UserProfile.getUserProfile();
+        int teamID = 0;
+
+        String getTeam = "SELECT team_id " +
+                "FROM teams " +
+                "WHERE team_name = '" + teamName + "';";
+        System.out.println(getTeam);
 
 
+        Statement statement = connection.createStatement();
 
+        ResultSet resultSet = statement.executeQuery(getTeam);
+        while (resultSet.next())
+            teamID = resultSet.getInt(1);
+
+        System.out.println(teamID);
+
+
+        String addTeamMember = "INSERT INTO team_members(team_ID, user_ID) " +
+                "VALUES (" + teamID + "," + userID + ");";
+        System.out.println(addTeamMember);
+        statement.executeUpdate(addTeamMember);
     }
 
 }

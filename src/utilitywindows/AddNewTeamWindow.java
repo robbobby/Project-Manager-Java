@@ -87,25 +87,24 @@ public class AddNewTeamWindow {
         exit.setOnAction(event -> window.close());
 
         // Finish Button Clicked //
-        finish.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    System.out.println(userProfile.get_UserUniqueId());
-                    System.out.println(userProfile.getEmail());
-                    if (AddTeamProfile.addProject(profileName_TextField.getText(), userProfile.get_UserUniqueId(), window))
-                        warning.setVisible(true);
-                    else {
-                        warning.setVisible(false);
-                    window.close();
-                        TeamDbConnection.makeDatabase(profileName_TextField.getText());
-                        NotificationPopUp.display("Project Created Successfully");
-                        User.addUserToTeam(profileName_TextField.getText(), userProfile.get_UserUniqueId(), 1);
+        finish.setOnAction(event -> {
+            try {
+                System.out.println(userProfile.get_UserUniqueId());
+                System.out.println(userProfile.getEmail());
+                if (AddTeamProfile.addProject(profileName_TextField.getText(), userProfile.get_UserUniqueId(), window))
+                    warning.setVisible(true);
+                else {
+                    warning.setVisible(false);
+                window.close();
+                String proName = profileName_TextField.getText();
+                proName.replace(" ", "_");
+                    TeamDbConnection.makeDatabase(proName);
+                    NotificationPopUp.display("Project Created Successfully");
+                    User.addUserToTeam(proName, userProfile.get_UserUniqueId(), 1);
 
-                    }
-                } catch (SQLException exception) {
-                    exception.printStackTrace();
                 }
+            } catch (SQLException exception) {
+                exception.printStackTrace();
             }
         });
     }

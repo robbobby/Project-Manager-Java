@@ -18,10 +18,12 @@ public class TeamDbConnection {
     public static void makeDatabase(String databaseName) throws SQLException {
         String userID = "root";
         String password = "default";
+        String dbName = databaseName.replace(" ", "_");
+        System.out.println(dbName);
 
         Connection connection = getConnection(userID, password);
-        createDatabase(connection, databaseName);
-        connection = getTableCreationConnection(userID, password, databaseName);
+        createDatabase(connection, dbName);
+        connection = getTableCreationConnection(userID, password, dbName);
         createTables(connection);
 
     }
@@ -37,34 +39,6 @@ public class TeamDbConnection {
 
     }
 
-//    private static void createDbTables(Connection connection) throws SQLException {
-//        Statement statement = connection.createStatement();
-//
-//        String[] createTable ={"CREATE TABLE team_members(\n" +
-//                              "`admin_access_level` INT,\n" +
-//                              "`user_unique_id` INT NOT NULL PRIMARY KEY UNIQUE,\n" +
-//                              "`first_name` VARCHAR(20),\n" +
-//                              "`last_name` VARCHAR(25),\n" +
-//                              "`email_address` VARCHAR(40) UNIQUE, \n" +
-//                              "`mobile_number` VARCHAR(15),\n" +
-//                              "`data_added` DATETIME);\n",
-//
-//                              "CREATE TABLE projects (\n" +
-//                              "`project_id` INT UNIQUE NOT NULL PRIMARY KEY AUTO_INCREMENT,\n" +
-//                              "`project_name` VARCHAR(50) NOT NULL UNIQUE,\n" +
-//                              "`project_admin_uid` INT NOT NULL,\n" +
-//                              "`project_was_made` DATETIME,\n" +
-//                              "`description` VARCHAR(255));",};
-//
-////                              "CREATE TABLE project_members (\n" +
-////                              "`project_id` INT NOT NULL,\n" +
-////                              "`user_unique_id` INT NOT NULL,\n" +
-////                              "PRIMARY KEY(project_id, user_unique_id));"};
-//
-//        for (String i : createTable) {
-//            statement.executeUpdate(Arrays.toString(createTable));
-//        }
-//    }
 
 
             // After a database is made for a team we call this function to create the tables in that database //
