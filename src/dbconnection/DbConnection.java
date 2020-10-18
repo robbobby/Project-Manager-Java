@@ -18,19 +18,22 @@ public class DbConnection {
         /* Login details for MySQL
          *** TODO Make it so you have to enter userID and password into MySQL
          */
-        String sqlUserID = "root";
-        String sqlPassword = "default";
+        String sqlUserID = "u21pzxyrruuj7oji";
+        String sqlPassword = "fgHsImrphK0OMZZZtmZr";
+        
         try {
             // Load driver to connect to MySQL //
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Successfully loaded MySQL J Connecter Driver");
+            System.out.println("Successfully loaded MySQL J Connector Driver");
 
             // Attempt to establish a connection to the Database //
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/projectmanager?serverTimezone=UTC", sqlUserID, sqlPassword);
+                    "jdbc:mysql://u21pzxyrruuj7oji:fgHsImrphK0OMZZZtmZr@b1bbeunpiubpwgg8mg8v-mysql.services.clever-cloud.com:3306/b1bbeunpiubpwgg8mg8v");
+
             System.out.println("Successfully connected to the database");
         } catch (ClassNotFoundException | SQLException errorMessage) {
-            Logger.getLogger(DbConnection.class.getName()).log(Level.ALL, null, errorMessage);
+            Logger.getLogger(DbConnection.class.getName()).log(Level.WARNING, null, errorMessage);
+            System.out.println("Failed to connect to Remote Server");
         }
     }
 
@@ -39,5 +42,4 @@ public class DbConnection {
         initConnection();
         return connection;
     }
-
 }

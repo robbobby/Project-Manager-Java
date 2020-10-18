@@ -29,19 +29,15 @@ public class UserLogin {
     public void setUserLogin(String a_UserLogin) {
         userLogin = a_UserLogin;
     }
-
     public void setFirstName(String a_FirstName) {
         firstName = a_FirstName;
     }
-
     public void setPhoneNumber(String a_PhoneNumber) {
         mobileNumber = a_PhoneNumber;
     }
-
     public void setLastName(String lastName) {
         lastName = lastName;
     }
-
     public void setEmail(String a_Email) {
         emailAddress = a_Email;
     }
@@ -54,22 +50,19 @@ public class UserLogin {
     public String getUserLogin() {
         return userLogin;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public String getEmail() {
         return emailAddress;
     }
-
     public String getPhoneNumber() {
         return mobileNumber;
     }
+
 
     public void signIn(String user_name, String user_password) throws SQLException {
         // MySQL stuff //
