@@ -1,24 +1,44 @@
 package dbconnection;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 /** Call this function to check and create SQL tables if they do not already exist */
 
 public class CreateTables {
-                // ###### MAIN DATABASE ##### //
+    // ###### MAIN DATABASE ##### //
     //# MAKE THIS STATIC, WE DON'T NEED AN OBJECT #//
 
     // Check if Table exists
     // If not create the table
-        // Table 1) - User Table
-        // Table 2) - Team Table
+    // Table 1) - User Table
+    // Table 2) - Team Table
 
     public static void createMainDbTables() throws SQLException {
-        String checkAndCreateTables = "CREATE TABLE IF NOT EXISTS users(\n" +
+        Connection connection = new DbConnection().getConnection();
+        Statement statement = connection.createStatement();
+        try {
+            statement.executeUpdate(createUsersDb());
+        } catch (SQLException exception) {
+            System.out.println("Failed to make 'users' database");
+        }
+        try {
+            statement.executeUpdate(createTeamDB());
+        } catch (SQLException exception) {
+            System.out.println("Failed to make 'teams' database");
+        }
+    }
+
+    private static String createTeamDB() {
+        return "CREATE TABLE IF NOT EXISTS team(\n" +
+                "\tteam_name VARCHAR(40),\n" +
+                "    admin_user INT,\n" +
+                "    created_on DATETIME)";
+    }
+
+    private static String createUsersDb() {
+        return  "CREATE TABLE IF NOT EXISTS users(\n" +
                 "\tuser_id INT NOT NULL  AUTO_INCREMENT PRIMARY KEY,\n" +
                 "\temail VARCHAR(40) NOT NULL,\n" +
                 "\tfirst_name VARCHAR(40),\n" +
@@ -34,16 +54,6 @@ public class CreateTables {
                 "\tuser_password VARCHAR(30),\n" +
                 "\tregistration_date DATETIME,\n" +
                 "\tis_activated BOOL)";
-        System.out.println(checkAndCreateTables);
-
-        Connection connection = new DbConnection().getConnection();
-        Statement statement = connection.createStatement();
-        try {
-            statement.executeUpdate(checkAndCreateTables);
-            System.out.println("Created users database");
-        } catch(SQLException exception) {
-            System.out.println("users database is already made OR failed to make the database");
-        }
 
     }
                 // ##### TEAM DATABASE ##### //
