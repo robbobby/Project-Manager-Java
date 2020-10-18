@@ -3,6 +3,7 @@ package dbconnection;
 import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /** Call this function to check and create SQL tables if they do not already exist */
@@ -16,7 +17,7 @@ public class CreateTables {
         // Table 1) - User Table
         // Table 2) - Team Table
 
-    public static void createMainDbTables() {
+    public static void createMainDbTables() throws SQLException {
         String checkAndCreateTables = "CREATE TABLE IF NOT EXISTS users(\n" +
                 "\tuser_id INT NOT NULL  AUTO_INCREMENT PRIMARY KEY,\n" +
                 "\temail VARCHAR(40) NOT NULL,\n" +
@@ -37,10 +38,14 @@ public class CreateTables {
 
         Connection connection = new DbConnection().getConnection();
         Statement statement = connection.createStatement();
-        ResultSet isThisNeeded = null;
+        try {
+            statement.executeUpdate(checkAndCreateTables);
+            System.out.println("Created users database");
+        } catch(SQLException exception) {
+            System.out.println("users database is already made OR failed to make the database");
+        }
 
     }
                 // ##### TEAM DATABASE ##### //
     // This already exists in the Project, MOVE IT TO HERE
-
 }

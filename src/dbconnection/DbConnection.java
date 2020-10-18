@@ -23,7 +23,7 @@ public class DbConnection {
         
         try {
             // Load driver to connect to MySQL //
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Successfully loaded MySQL J Connector Driver");
 
             // Attempt to establish a connection to the Database //

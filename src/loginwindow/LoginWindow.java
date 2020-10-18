@@ -1,6 +1,7 @@
 package loginwindow;
 
 import data.User;
+import dbconnection.CreateTables;
 import dbconnection.UserLogin;
 import data.UserProfile;
 import javafx.fxml.FXMLLoader;
@@ -76,6 +77,7 @@ public class LoginWindow {
 
     public void SignIn_Button_Clicked() throws IOException, SQLException {
 
+        CreateTables.createMainDbTables();
         thisWindow = (Stage) loginForm.getScene().getWindow();
 
         System.out.println("Signing in...");
